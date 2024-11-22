@@ -52,13 +52,13 @@ def chunk_text(text, max_tokens=80000):
 
 # Function to generate responses from OpenAI with adjustable parameters
 def openai_prompt(prompt, temperature, top_p, frequency_penalty, presence_penalty):
-    response = openai.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model="gpt-4o",
         messages=[
-            {"role": "system", "content": "You are the best business coach summary transcriber"},
+            {"role": "system", "content": "You are the best business coach summary transcriber."},
             {"role": "user", "content": prompt}
         ],
-        max_tokens=10000,
+        max_tokens=1000,
         temperature=temperature,
         top_p=top_p,
         frequency_penalty=frequency_penalty,
@@ -86,13 +86,11 @@ def clean_text(text):
     return clean_text.strip()
 
 # Function to analyze transcript
-def generate_summary(transcript, temperature, top_p, frequency_penalty, presence_penalty):
+def generate_summary(transcript, action_points_prompt, recommendations_prompt, temperature, top_p, frequency_penalty, presence_penalty):
     # 1) Main action points
-    action_points_prompt = "Determine main discussion points with clear topic headings and details."
     main_points = process_chunks(transcript, action_points_prompt, temperature, top_p, frequency_penalty, presence_penalty).splitlines()
 
     # 2) Recommendations
-    recommendations_prompt = "Provide recommendations for further discussion to support progress on collaborative opportunities."
     recommendations = process_chunks(transcript, recommendations_prompt, temperature, top_p, frequency_penalty, presence_penalty)
 
     # Clean up formatting in main_points and recommendations
@@ -121,7 +119,17 @@ st.title("Meeting Notes Summarizer")
 
 uploaded_file = st.file_uploader("Upload a .txt or .docx file with meeting notes", type=["txt", "docx"])
 
-# OpenAI parameters sliders
+# Sidebar inputs for prompts and OpenAI parameters
+st.sidebar.header("Custom Prompts")
+action_points_prompt = st.sidebar.text_area(
+    "Action Points Prompt",
+    "Determine main discussion points with clear topic headings and details."
+)
+recommendations_prompt = st.sidebar.text_area(
+    "Recommendations Prompt",
+    "Provide recommendations for further discussion to support progress on collaborative opportunities."
+)
+
 st.sidebar.header("OpenAI Settings")
 temperature = st.sidebar.slider("Temperature", 0.0, 2.0, 0.5, step=0.1)
 top_p = st.sidebar.slider("Top P", 0.0, 1.0, 1.0, step=0.1)
@@ -135,7 +143,7 @@ if uploaded_file:
     if transcript:
         # Run extraction and display results
         main_points, recommendations = generate_summary(
-            transcript, temperature, top_p, frequency_penalty, presence_penalty
+            transcript, action_points_prompt, recommendations_prompt, temperature, top_p, frequency_penalty, presence_penalty
         )
 
         with st.expander("Main Discussion Points"):
