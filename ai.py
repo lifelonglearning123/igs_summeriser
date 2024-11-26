@@ -52,7 +52,7 @@ def chunk_text(text, max_tokens=80000):
 
 # Function to generate responses from OpenAI with adjustable parameters
 def openai_prompt(prompt, temperature, top_p, frequency_penalty, presence_penalty):
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         model="gpt-4o",
         messages=[
             {"role": "system", "content": "You are the best business coach summary transcriber."},
