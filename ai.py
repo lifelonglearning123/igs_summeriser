@@ -123,11 +123,60 @@ uploaded_file = st.file_uploader("Upload a .txt or .docx file with meeting notes
 st.sidebar.header("Custom Prompts")
 action_points_prompt = st.sidebar.text_area(
     "Action Points Prompt",
-    "Determine main discussion points with clear topic headings and details."
+    """Extract Basic Information
+Title
+Date/Time
+Participants
+Generate a Concise Meeting Summary
+Summarize the main discussion points in 80 words or fewer.
+Include strategic priorities, key decisions, and important challenges."""
 )
 recommendations_prompt = st.sidebar.text_area(
     "Recommendations Prompt",
-    "Provide recommendations for further discussion to support progress on collaborative opportunities."
+    """Identify Business Insights and Challenges
+Review the transcript for insights, opportunities and challenges facing the client.
+ 
+Identify Outputs & Outcomes
+Review the transcript for any mention of the following Outputs & Outcomes:
+Accessed New Markets
+Debt Finance Raised
+EEN Network Advisory Achievement
+Grant Funding Secured
+Investment Raised
+Jobs Created
+Jobs Maintained
+Partnering Achievement
+Cross-reference each output and include it in the "Outputs & Outcomes" section if mentioned.
+ 
+Identify Referrals to Other Support
+Review the transcript for referrals and match against the following categories:
+DBT (DIT)
+Local Service (Growth Hub)
+Knowledge Base/Universities
+Knowledge Transfer Network
+National Enquiry Gateway
+Catapult
+Private Sector Support
+Scale Up Programme EOI
+Peer-to-Peer Network
+Other (please state)
+ 
+Identify Key Actions
+Extract no more than four clear and actionable steps for participants to progress.
+ 
+Format:
+Structure the output as follows:
+ 
+Business Insights/Opportunities/Challenges: [Generate a bullet point list presenting each I/O/C in bold followed by a : (colon) and then an explanation]
+ 
+Outputs & Outcomes: 
+[Generate a bullet point list presenting each Output and Outcome in bold followed by a : (colon) and then an explanation]
+ 
+Referrals to Other Support: 
+[Generate a bullet point list presenting each I/O/C in bold followed by a : (colon) and then an explanation]
+ 
+Actions:
+[Generate a bullet point list of no more than four actions presenting each Action/Activity in bold followed by a : (colon) and then an explanation]"""
 )
 
 st.sidebar.header("OpenAI Settings")
