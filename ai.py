@@ -128,7 +128,7 @@ Title
 Date/Time
 Participants
 Generate a Concise Meeting Summary
-Summarize the main discussion points in 80 words or fewer.
+Summarize the main discussion points in 150 words or fewer.
 Include strategic priorities, key decisions, and important challenges."""
 )
 recommendations_prompt = st.sidebar.text_area(
@@ -162,7 +162,7 @@ Peer-to-Peer Network
 Other (please state)
  
 Identify Key Actions
-Extract no more than four clear and actionable steps for participants to progress.
+Extract no more than five clear and actionable steps for participants to progress.
  
 Format:
 Structure the output as follows:
