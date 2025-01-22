@@ -169,17 +169,17 @@ Structure the output as follows:
  
 Business Insights/Opportunities/Challenges: [Generate a bullet point list presenting each I/O/C in bold followed by a : (colon) and then an explanation]
  
-\+
++
 
 Outputs & Outcomes: 
 [Generate a bullet point list presenting each Output and Outcome in bold followed by a : (colon) and then an explanation]
  
-\+
++
 
 Referrals to Other Support: 
 [Generate a bullet point list presenting each I/O/C in bold followed by a : (colon) and then an explanation]
  
-\+
++
 
 Actions:
 [Generate a numbered bullet point list of no more than five actions presenting each Action/Activity in bold followed by a : (colon) and then an explanation]
